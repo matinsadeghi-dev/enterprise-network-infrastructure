@@ -2,13 +2,13 @@
 
 ## 1. Create a repository
 
-1. Sign in to GitHub and create a new repository named `matin-network-lab` (or choose another name).
+1. Sign in to GitHub and create a new repository named `enterprise-network-infrastructure`.
 2. For the easiest first upload, create it without a README, license or `.gitignore`, because those files are already included here.
 3. Download and extract this project folder on your computer.
 
 ## 2. Initialize Git and commit all project files
 
-Open a terminal inside the extracted `matin-network-lab` directory. First ensure Git knows your preferred commit identity:
+Open a terminal inside the extracted `enterprise-network-infrastructure` directory. First ensure Git knows your preferred commit identity:
 
 ```bash
 git config --global user.name "Your Name"
@@ -32,7 +32,7 @@ Review `git status` before committing so you can confirm exactly which files wil
 Replace the URL below with the repository URL shown by GitHub:
 
 ```bash
-git remote add origin https://github.com/YOUR-USERNAME/matin-network-lab.git
+git remote add origin https://github.com/YOUR-USERNAME/enterprise-network-infrastructure.git
 git push -u origin main
 ```
 
@@ -52,8 +52,8 @@ If `origin` already exists, inspect it with `git remote -v` rather than adding i
 
 - Ensure `README.md`, `index.html`, `assets/`, `docs/` and `packet-tracer/matin-network-lab.pkt` are visible.
 - Open the Pages URL and check navigation, tables and the topology section.
-- Read the address caveats: `10.0.0.1/24` is assumed, and Web Server/DNS/Server 0 details need confirmation.
-- Open `packet-tracer/matin-network-lab.pkt` in Packet Tracer before publishing to confirm it loads.
+- Confirm the address plan documented in `docs/ADDRESSING-PLAN.md`.
+- Open `packet-tracer/matin-network-lab.pkt` in Packet Tracer and test DNS/HTTP from clients on both LANs before presenting it as verified.
 - Do not publish credentials, private keys or tokens. Make sure the lab itself contains no information you intend to keep private.
 
 ## Suggested follow-up commits
@@ -64,7 +64,7 @@ If you prefer a more descriptive history, make later changes as separate commits
 feat: document all devices in the two-LAN topology
 docs: add addressing and subnetting reference
 docs: explain DHCP DNS HTTP and routing
-fix: correct verified device addresses
+fix: stabilize Web Server IP and repair DNS/DHCP settings
 ```
 
 A first public release can reasonably use the single initial commit shown above. Update this repository whenever the Packet Tracer configuration changes so the website and documentation do not drift from the simulation.

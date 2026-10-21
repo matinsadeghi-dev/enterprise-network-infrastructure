@@ -9,11 +9,11 @@ The design contains two Ethernet LANs connected by a point-to-point transit netw
 ### LAN 1 — `10.0.0.0/24`
 | Device | Interface | Address | Role |
 |---|---|---|---|
-| Router 1 | Fa0/1 | `10.0.0.1/24` (assumed; verify) | Default gateway for LAN 1 |
+| Router 1 | Fa0/1 | `10.0.0.1/24` | Default gateway for LAN 1 |
 | Switch 1 | VLAN 1 | `10.0.0.2/24` | Switch management |
 | DHCP Server 1 | NIC | `10.0.0.3/24` | DHCP for LAN 1 |
 | PC 1 | NIC | DHCP | Client |
-| Web Server | NIC | Not provided | Hosts the HTML website; static IP must be confirmed |
+| Web Server | NIC | `10.0.0.6/24` | Hosts HTTP website and DNS |
 
 ### Router transit — `192.10.170.16/30`
 | Device | Interface | Address |
@@ -28,11 +28,10 @@ The subnet mask is `255.255.255.252`, network address is `192.10.170.16`, and br
 |---|---|---|---|
 | Router 2 | Fa0/1 | `192.10.170.1/28` | Default gateway for LAN 2 |
 | Switch 2 | VLAN 1 | `192.10.170.2/28` | Switch management |
-| DHCP Server 2 | NIC | `192.10.170.3/28` | DHCP for LAN 2 |
+| Server 0 | NIC | `192.10.170.3/28` | DHCP Server 2 role for LAN 2 |
 | Laptop 0 | NIC | DHCP | Client |
 | PC 2 | NIC | DHCP | Client |
-| Printer 1 | NIC | Not provided | DHCP or reservation; verify |
-| Server 0 | NIC | Not provided | IP and service role not provided |
+| Printer 1 | NIC | DHCP | DHCP client in saved project |
 
 ## Packet flow for the website
 
@@ -47,11 +46,9 @@ The subnet mask is `255.255.255.252`, network address is `192.10.170.16`, and br
 
 See [the SVG topology diagram](../assets/network-topology.svg). It can be edited in a vector graphics editor or directly as SVG source.
 
-## Facts that still require verification
+## Runtime validation still required
 
-- Router 1 Fa0/1's exact IP was not explicitly supplied. `10.0.0.1/24` is shown as an assumption based on its likely gateway role.
-- The Web Server's static IPv4 address is unknown.
-- The DNS service's hosting device and IP are unknown.
-- Server 0's IP and service role are unknown.
-- Printer 1's address mode (DHCP/static reservation) is unknown.
-- Actual DHCP client leases have not been supplied.
+- Open the repaired file in Packet Tracer and confirm the topology loads without errors.
+- Renew client DHCP leases and verify each client receives the correct gateway and DNS server `10.0.0.6`.
+- Test `http://www.lab.matin.local` from clients on both LANs.
+- Actual client lease addresses may vary because clients are configured for DHCP.

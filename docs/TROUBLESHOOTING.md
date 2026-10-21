@@ -14,7 +14,7 @@ Check that the address, mask, gateway and DNS server belong to the correct LAN. 
 
 ## 2. Test the local gateway
 
-- LAN 1: `ping 10.0.0.1` (provided that the assumed gateway is correct).
+- LAN 1: `ping 10.0.0.1`.
 - LAN 2: `ping 192.10.170.1`.
 
 If this fails, inspect the client IP/mask, cable/link status, switch port and router LAN interface.
@@ -38,11 +38,12 @@ In Packet Tracer, open each DHCP server's **Services → DHCP** page. Confirm th
 
 ## 5. Verify DNS and HTTP
 
-1. Confirm which device provides DNS and record its IP.
-2. Confirm the A record `www.lab.matin.local` points to the Web Server's actual IP—not automatically to DHCP Server 1.
-3. Confirm HTTP is On on the Web Server.
-4. Test the Web Server by IP address before testing the hostname.
-5. Test `http://www.lab.matin.local` from a client in each LAN.
+1. Confirm the Web Server is static at `10.0.0.6/24` with gateway `10.0.0.1`.
+2. In **Services → DNS**, confirm DNS is On and the A record `www.lab.matin.local` points to `10.0.0.6`.
+3. In **Services → HTTP**, confirm HTTP is On and `index.html` is present.
+4. Confirm both DHCP pools advertise DNS `10.0.0.6`.
+5. Confirm DHCP Server 2 starts at `192.10.170.4`, not the LAN network address `.0`.
+6. Test `ping 10.0.0.6`, then open `http://www.lab.matin.local` from a client in each LAN.
 
 ## Common symptoms
 
@@ -55,3 +56,8 @@ In Packet Tracer, open each DHCP server's **Services → DHCP** page. Confirm th
 | Switch management unreachable | VLAN 1 state, management IP/mask, default gateway |
 
 A failed ping alone does not prove that a service is unavailable; use the result together with interface state, route tables and application testing.
+
+## Issues corrected in the repaired project
+
+- The Web Server was a DHCP client, while the DNS A record and DHCP options hard-coded `10.0.0.6`. It now uses static `10.0.0.6/24`, and the DNS record and both pool DNS options use `10.0.0.6`.
+- DHCP Server 2's pool started at `192.10.170.0`, which is its network address. The repaired range is `192.10.170.4` to `192.10.170.13`.

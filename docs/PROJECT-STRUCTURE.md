@@ -14,6 +14,7 @@ This repository is arranged so that the website can be published directly throug
 | `docs/SERVICES.md` | DHCP, DNS and HTTP configuration notes. |
 | `docs/ROUTING.md` | Transit addressing and example static routes. |
 | `docs/TROUBLESHOOTING.md` | Ordered diagnostic process and symptom table. |
+| `docs/DNS-FIX-REPORT.md` | Root cause, changes applied to the `.pkt`, and post-repair checks. |
 | `docs/GITHUB-PUBLISHING.md` | Repository, commit and Pages publishing instructions. |
 | `docs/COMMIT-PLAN.md` | Initial and follow-up commit plan. |
 | `packet-tracer/matin-network-lab.pkt` | Uploaded Cisco Packet Tracer project file; open it in Packet Tracer to verify it loads. |
@@ -27,4 +28,4 @@ Git records files rather than empty directories. Every directory in this project
 
 ## Packet Tracer project file
 
-The uploaded file `packet-tracer/matin-network-lab.pkt` is included. It has not been opened in Packet Tracer in this environment, so open it locally and confirm it loads and contains the intended topology before publishing. Modern `.pkt` files are obfuscated/encrypted and may not be identifiable by ordinary file signature tools.
+The repaired file `packet-tracer/matin-network-lab.pkt` is included. Its saved configuration was decoded, updated, re-encoded, and checked for the expected Web Server IP, DNS record, DHCP DNS options, and LAN 2 DHCP range. This environment cannot launch Cisco Packet Tracer, so open it locally and confirm it loads and passes the end-to-end DNS/HTTP checks before relying on it.

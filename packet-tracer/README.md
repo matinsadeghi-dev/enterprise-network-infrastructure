@@ -2,14 +2,23 @@
 
 ## File
 
-- `matin-network-lab.pkt` — the project file uploaded for this repository.
+- `matin-network-lab.pkt` — repaired Packet Tracer project based on the uploaded lab.
 
-## Before publishing
+## Fixes in this version
 
-1. Open `matin-network-lab.pkt` in Cisco Packet Tracer.
-2. Confirm that the topology loads without an error.
-3. Confirm all expected devices are present: PC 1, Web Server, DHCP Server 1, Switch 1, Router 1, Router 2, Switch 2, Laptop 0, PC 2, Printer 1, Server 0 and DHCP Server 2.
-4. Check the saved IP configuration and services against `../docs/ADDRESSING-PLAN.md` and `../docs/SERVICES.md`.
-5. Confirm there are no passwords, private credentials or other information you do not want to publish.
+- Web Server is statically addressed at `10.0.0.6/24`, gateway `10.0.0.1`.
+- `www.lab.matin.local` resolves to `10.0.0.6`.
+- DHCP Server 1 and DHCP Server 2 both provide `10.0.0.6` as the DNS server.
+- DHCP Server 2 pool starts at `192.10.170.4`, avoiding the LAN's network address.
+- Existing router addressing and static routes are preserved.
 
-**Validation status:** The file is included as supplied, but it has not been opened in Cisco Packet Tracer in this environment. The `.pkt` format is obfuscated/encrypted and can look like random binary data to generic file-identification tools; that alone does not mean it is invalid. The reliable final check is to open it in Packet Tracer.
+## Verify after opening in Packet Tracer
+
+1. Open the project and check that all devices and cables appear.
+2. On Webserver, verify **Desktop > IP Configuration** shows static `10.0.0.6`, mask `255.255.255.0`, gateway `10.0.0.1`.
+3. Under **Services > DNS**, verify DNS is On and the A record is `www.lab.matin.local` -> `10.0.0.6`.
+4. Under **Services > HTTP**, verify HTTP is On and `index.html` contains the intended site.
+5. Verify both DHCP pools advertise DNS `10.0.0.6`; DHCP Server 2 starts at `192.10.170.4`.
+6. Test gateway connectivity, `ping 10.0.0.6`, and then open `http://www.lab.matin.local` from a client on each LAN.
+
+**Validation note:** The saved configuration was decoded, patched, re-encoded and checked for the expected address/DNS fields, but this environment cannot launch Cisco Packet Tracer. Please open the file in Packet Tracer and verify the project loads and end-to-end DNS/HTTP works.
