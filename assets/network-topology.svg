@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+<title id="title">Matin Sadeghi — complete network topology</title>
+<desc id="desc">One Router 1 and one Router 2 connect LAN 1 and LAN 2 across a 192.10.170.16/30 transit link. All devices from the supplied Packet Tracer screenshot are included. Unprovided IP addresses are marked unknown.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#edf3fb"/></linearGradient>
+  <linearGradient id="lan1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2e9ff"/><stop offset="1" stop-color="#cbd7ff"/></linearGradient>
+  <linearGradient id="transit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9fff5"/><stop offset="1" stop-color="#aef1e4"/></linearGradient>
+  <linearGradient id="lan2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe2f4"/><stop offset="1" stop-color="#f9c9e8"/></linearGradient>
+  <style>
+    .title{font:700 38px Arial,sans-serif;fill:#10213d;letter-spacing:1px}.subtitle{font:16px Arial,sans-serif;fill:#4a5d79}.zone-title{font:700 24px Arial,sans-serif;fill:#fff}.zone-sub{font:15px Arial,sans-serif;fill:#eaf2ff}
+    .device{fill:#fff;stroke:#2b5ca8;stroke-width:2}.router{fill:#fff4cf;stroke:#a17819;stroke-width:2}.server{fill:#e3fff6;stroke:#16856b;stroke-width:2}
+    .label{font:700 17px Arial,sans-serif;fill:#152a4b}.detail{font:14px Arial,sans-serif;fill:#344a6a}.mono{font:700 14px 'Courier New',monospace;fill:#1456a0}.unknown{font:italic 13px Arial,sans-serif;fill:#7a4f13}
+    .link{fill:none;stroke:#1d3659;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.transit-link{fill:none;stroke:#127d77;stroke-width:5;stroke-dasharray:12 9;stroke-linecap:round}
+    .small-title{font:700 20px Arial,sans-serif;fill:#10213d}.flow-title{font:700 17px Arial,sans-serif;fill:#1255a3}.flow-text{font:14px Arial,sans-serif;fill:#344a6a}
+  </style>
+</defs>
+<rect width="1800" height="1050" fill="url(#bg)"/>
+<text x="900" y="57" text-anchor="middle" class="title">MATIN SADEGHI — NETWORK TOPOLOGY</text>
+<text x="900" y="86" text-anchor="middle" class="subtitle">Cisco Packet Tracer • Two LANs • One transit link • DHCP / DNS / HTTP</text>
+
+<!-- Network zones -->
+<rect x="28" y="118" width="548" height="585" rx="18" fill="url(#lan1)" stroke="#6d83ff" stroke-width="2"/>
+<rect x="594" y="118" width="612" height="585" rx="18" fill="url(#transit)" stroke="#36c8b5" stroke-width="2"/>
+<rect x="1224" y="118" width="548" height="585" rx="18" fill="url(#lan2)" stroke="#e76ab8" stroke-width="2"/>
+<rect x="44" y="134" width="516" height="58" rx="10" fill="#5369d8"/>
+<rect x="610" y="134" width="580" height="58" rx="10" fill="#079d91"/>
+<rect x="1240" y="134" width="516" height="58" rx="10" fill="#d33491"/>
+<text x="302" y="170" text-anchor="middle" class="zone-title">LAN 1 — 10.0.0.0/24</text>
+<text x="900" y="158" text-anchor="middle" class="zone-title" style="font-size:20px">ROUTER-TO-ROUTER TRANSIT</text>
+<text x="900" y="180" text-anchor="middle" class="zone-sub">192.10.170.16/30 • Mask 255.255.255.252</text>
+<text x="1498" y="170" text-anchor="middle" class="zone-title">LAN 2 — 192.10.170.0/28</text>
+<text x="302" y="218" text-anchor="middle" class="detail">Mask 255.255.255.0 • Gateway 10.0.0.1 assumed</text>
+<text x="1498" y="218" text-anchor="middle" class="detail">Mask 255.255.255.240 • Gateway 192.10.170.1</text>
+
+<!-- Links are behind the device cards -->
+<path class="link" d="M164 340 L205 340"/>
+<path class="link" d="M330 340 L425 340"/>
+<path class="link" d="M267 385 L190 460"/>
+<path class="link" d="M290 385 L410 460"/>
+<path class="transit-link" d="M560 318 L1238 318"/>
+<path class="link" d="M1373 340 L1400 340"/>
+<path class="link" d="M1525 340 L1540 270"/>
+<path class="link" d="M1525 340 L1540 345"/>
+<path class="link" d="M1525 340 L1540 420"/>
+<path class="link" d="M1525 340 L1540 495"/>
+<path class="link" d="M1462 385 L1462 485"/>
+
+<!-- LAN 1 endpoints and infrastructure -->
+<rect x="52" y="294" width="112" height="92" rx="9" class="device"/>
+<text x="108" y="319" text-anchor="middle" class="label">PC 1</text><text x="108" y="342" text-anchor="middle" class="detail">DHCP client</text><text x="108" y="363" text-anchor="middle" class="detail">LAN 1</text>
+<rect x="205" y="294" width="125" height="91" rx="9" class="device"/>
+<text x="267" y="319" text-anchor="middle" class="label">Switch 1</text><text x="267" y="342" text-anchor="middle" class="detail">VLAN 1</text><text x="267" y="365" text-anchor="middle" class="mono">10.0.0.2/24</text>
+<rect x="425" y="257" width="135" height="155" rx="12" class="router"/>
+<text x="492" y="282" text-anchor="middle" class="label">Router 1</text><text x="492" y="304" text-anchor="middle" class="detail">Fa0/1 • LAN</text><text x="492" y="326" text-anchor="middle" class="mono">10.0.0.1/24</text><text x="492" y="347" text-anchor="middle" class="unknown">assumed gateway</text><line x1="437" y1="359" x2="548" y2="359" stroke="#dec57b"/><text x="492" y="380" text-anchor="middle" class="detail">Fa0/0 • Transit</text><text x="492" y="400" text-anchor="middle" class="mono">.18/30</text>
+<rect x="58" y="460" width="230" height="116" rx="10" class="server"/>
+<text x="173" y="487" text-anchor="middle" class="label">Web Server</text><text x="173" y="510" text-anchor="middle" class="unknown">Static IP not supplied</text><text x="173" y="533" text-anchor="middle" class="detail">Hosts website via HTTP</text><text x="173" y="555" text-anchor="middle" class="detail">DNS A record must point here</text>
+<rect x="304" y="460" width="248" height="116" rx="10" class="server"/>
+<text x="428" y="487" text-anchor="middle" class="label">DHCP Server 1</text><text x="428" y="510" text-anchor="middle" class="mono">10.0.0.3/24</text><text x="428" y="533" text-anchor="middle" class="detail">DHCP service for LAN 1</text><text x="428" y="555" text-anchor="middle" class="detail">Gateway/DNS options: verify</text>
+<text x="302" y="629" text-anchor="middle" class="detail">PC 1, Web Server and DHCP Server 1 connect through Switch 1.</text>
+
+<!-- Transit details; routers are shown once, with both interfaces in their cards -->
+<rect x="658" y="374" width="484" height="150" rx="12" fill="#f2fffc" stroke="#31a99e" stroke-width="2"/>
+<text x="900" y="405" text-anchor="middle" class="label">Point-to-point transit network</text>
+<text x="900" y="431" text-anchor="middle" class="mono">192.10.170.16/30</text>
+<text x="900" y="457" text-anchor="middle" class="detail">Router 1 Fa0/0: 192.10.170.18/30</text>
+<text x="900" y="481" text-anchor="middle" class="detail">Router 2 Fa0/0: 192.10.170.17/30</text>
+<text x="900" y="505" text-anchor="middle" class="detail">Broadcast .19 • usable .17 and .18</text>
+<rect x="674" y="557" width="452" height="62" rx="8" fill="#ffffff" stroke="#65cfc2"/>
+<text x="900" y="581" text-anchor="middle" class="label" style="font-size:15px">Inter-LAN communication</text>
+<text x="900" y="603" text-anchor="middle" class="detail">Routes must exist in both directions.</text>
+<text x="900" y="654" text-anchor="middle" class="detail">One Router 1 and one Router 2; both interfaces are documented.</text>
+
+<!-- LAN 2 infrastructure and all endpoints -->
+<rect x="1238" y="257" width="135" height="155" rx="12" class="router"/>
+<text x="1305" y="282" text-anchor="middle" class="label">Router 2</text><text x="1305" y="304" text-anchor="middle" class="detail">Fa0/0 • Transit</text><text x="1305" y="326" text-anchor="middle" class="mono">.17/30</text><line x1="1250" y1="339" x2="1361" y2="339" stroke="#dec57b"/><text x="1305" y="363" text-anchor="middle" class="detail">Fa0/1 • LAN</text><text x="1305" y="388" text-anchor="middle" class="mono">192.10.170.1/28</text>
+<rect x="1400" y="294" width="125" height="91" rx="9" class="device"/>
+<text x="1462" y="319" text-anchor="middle" class="label">Switch 2</text><text x="1462" y="342" text-anchor="middle" class="detail">VLAN 1</text><text x="1462" y="365" text-anchor="middle" class="mono">192.10.170.2/28</text>
+<rect x="1270" y="485" width="248" height="102" rx="10" class="server"/>
+<text x="1394" y="510" text-anchor="middle" class="label">DHCP Server 2</text><text x="1394" y="533" text-anchor="middle" class="mono">192.10.170.3/28</text><text x="1394" y="556" text-anchor="middle" class="detail">DHCP service for LAN 2</text><text x="1394" y="577" text-anchor="middle" class="detail">Gateway: 192.10.170.1</text>
+<rect x="1540" y="238" width="207" height="65" rx="8" class="device"/><text x="1643" y="262" text-anchor="middle" class="label">Laptop 0</text><text x="1643" y="284" text-anchor="middle" class="detail">DHCP client • IP by lease</text>
+<rect x="1540" y="313" width="207" height="65" rx="8" class="device"/><text x="1643" y="337" text-anchor="middle" class="label">PC 2</text><text x="1643" y="359" text-anchor="middle" class="detail">DHCP client • IP by lease</text>
+<rect x="1540" y="388" width="207" height="65" rx="8" class="device"/><text x="1643" y="412" text-anchor="middle" class="label">Printer 1</text><text x="1643" y="434" text-anchor="middle" class="unknown">DHCP/reservation unknown</text>
+<rect x="1540" y="463" width="207" height="82" rx="8" class="device"/><text x="1643" y="487" text-anchor="middle" class="label">Server 0</text><text x="1643" y="510" text-anchor="middle" class="unknown">IP not supplied</text><text x="1643" y="532" text-anchor="middle" class="detail">Service role not supplied</text>
+<text x="1498" y="629" text-anchor="middle" class="detail">Laptop 0, PC 2, Printer 1, Server 0 and DHCP Server 2 connect through Switch 2.</text>
+
+<!-- End-to-end traffic flow -->
+<rect x="28" y="728" width="1744" height="285" rx="16" fill="#ffffff" stroke="#c5d2e5" stroke-width="2"/>
+<text x="56" y="768" class="small-title">TRAFFIC FLOW — FROM CLIENT TO WEBSITE</text>
+<rect x="54" y="795" width="310" height="125" rx="10" fill="#f2f6ff" stroke="#3a72c5" stroke-width="2"/>
+<text x="72" y="823" class="flow-title">1. DHCP</text><text x="72" y="850" class="flow-text">Client receives IP, mask,</text><text x="72" y="872" class="flow-text">gateway and DNS settings</text><text x="72" y="894" class="flow-text">from its local DHCP server.</text>
+<path d="M367 857 L398 857 M389 847 L400 857 L389 867" stroke="#2465b6" stroke-width="4" fill="none"/>
+<rect x="408" y="795" width="310" height="125" rx="10" fill="#f2f6ff" stroke="#3a72c5" stroke-width="2"/>
+<text x="426" y="823" class="flow-title">2. DNS lookup</text><text x="426" y="850" class="flow-text">Client resolves</text><text x="426" y="872" class="flow-text">www.lab.matin.local to the</text><text x="426" y="894" class="flow-text">Web Server's actual IP.</text>
+<path d="M721 857 L752 857 M743 847 L754 857 L743 867" stroke="#2465b6" stroke-width="4" fill="none"/>
+<rect x="762" y="795" width="310" height="125" rx="10" fill="#edfbf8" stroke="#249c8c" stroke-width="2"/>
+<text x="780" y="823" class="flow-title">3. Routing (if needed)</text><text x="780" y="850" class="flow-text">Traffic for another subnet</text><text x="780" y="872" class="flow-text">travels through the default</text><text x="780" y="894" class="flow-text">gateway and router link.</text>
+<path d="M1075 857 L1106 857 M1097 847 L1108 857 L1097 867" stroke="#2465b6" stroke-width="4" fill="none"/>
+<rect x="1116" y="795" width="310" height="125" rx="10" fill="#f2f6ff" stroke="#3a72c5" stroke-width="2"/>
+<text x="1134" y="823" class="flow-title">4. TCP connection</text><text x="1134" y="850" class="flow-text">Client connects to the Web</text><text x="1134" y="872" class="flow-text">Server on TCP port 80 and</text><text x="1134" y="894" class="flow-text">sends an HTTP request.</text>
+<path d="M1429 857 L1460 857 M1451 847 L1462 857 L1451 867" stroke="#2465b6" stroke-width="4" fill="none"/>
+<rect x="1470" y="795" width="275" height="125" rx="10" fill="#edfbf8" stroke="#249c8c" stroke-width="2"/>
+<text x="1488" y="823" class="flow-title">5. HTTP response</text><text x="1488" y="850" class="flow-text">Web Server returns the</text><text x="1488" y="872" class="flow-text">HTML page to the client.</text>
+<rect x="54" y="943" width="1691" height="47" rx="7" fill="#fff6dd" stroke="#e6bd66" stroke-width="2"/>
+<text x="75" y="972" style="font:700 15px Arial,sans-serif;fill:#76510a">VERIFY:</text><text x="143" y="972" style="font:14px Arial,sans-serif;fill:#604d2b">Routes in both directions • correct DHCP DNS option • DNS A record to Web Server IP • HTTP enabled</text>
+</svg>
