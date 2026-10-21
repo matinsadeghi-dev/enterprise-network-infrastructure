@@ -13,7 +13,7 @@ The design contains two Ethernet LANs connected by a point-to-point transit netw
 | Switch 1 | VLAN 1 | `10.0.0.2/24` | Switch management |
 | DHCP Server 1 | NIC | `10.0.0.3/24` | DHCP for LAN 1 |
 | PC 1 | NIC | DHCP | Client |
-| Web Server | NIC | `10.0.0.6/24` | Hosts HTTP website and DNS |
+| Web Server | NIC | `10.0.0.200/24` | Hosts HTTP website and DNS |
 
 ### Router transit — `192.10.170.16/30`
 | Device | Interface | Address |
@@ -49,6 +49,6 @@ See [the SVG topology diagram](../assets/network-topology.svg). It can be edited
 ## Runtime validation still required
 
 - Open the repaired file in Packet Tracer and confirm the topology loads without errors.
-- Renew client DHCP leases and verify each client receives the correct gateway and DNS server `10.0.0.6`.
+- Renew client DHCP leases and verify each client receives the correct gateway and DNS server `10.0.0.200`.
 - Test `http://www.lab.matin.local` from clients on both LANs.
 - Actual client lease addresses may vary because clients are configured for DHCP.

@@ -38,7 +38,7 @@ main{max-width:1180px;margin:auto;padding:0 24px}.section{padding:34px 0;border-
     <div class="card"><div class="metric">192.10.170.16/30</div><strong>Transit link</strong><p>Point-to-point network between Router 1 and Router 2.</p><span class="badge">255.255.255.252</span></div>
     <div class="card"><div class="metric">192.10.170.0/28</div><strong>LAN 2</strong><p>Switch 2, Laptop 0, PC 2, Printer 1, Server 0 (DHCP Server 2 role) and Router 2.</p><span class="badge">255.255.255.240</span></div>
   </div>
-  <div class="warning"><strong>Address verification:</strong> Router 1 Fa0/1 is <span class="ip">10.0.0.1/24</span> in the saved configuration. The Web Server is statically configured at 10.0.0.6/24. Client addresses are assigned through DHCP.</div>
+  <div class="warning"><strong>Address verification:</strong> Router 1 Fa0/1 is <span class="ip">10.0.0.1/24</span> in the saved configuration. The Web Server is statically configured at 10.0.0.200/24. Client addresses are assigned through DHCP.</div>
 </section>
 <section class="section" id="topology">
   <h2 class="section-title">02 / COMPLETE DEVICE TOPOLOGY</h2>
@@ -49,7 +49,7 @@ main{max-width:1180px;margin:auto;padding:0 24px}.section{padding:34px 0;border-
       <div class="device"><strong>Router 1 · Fa0/1</strong><span>10.0.0.1/24 · default gateway</span></div>
       <div class="device"><strong>Switch 1 · VLAN 1</strong><span>10.0.0.2/24</span></div>
       <div class="device"><strong>DHCP Server 1</strong><span>10.0.0.3/24</span><span class="state">Provides LAN 1 client addressing</span></div>
-      <div class="device"><strong>Web Server</strong><span>10.0.0.6/24 • static</span><span class="state">HTTP host; DNS A record: www.lab.matin.local</span></div>
+      <div class="device"><strong>Web Server</strong><span>10.0.0.200/24 • static</span><span class="state">HTTP host; DNS A record: www.lab.matin.local</span></div>
       <div class="device"><strong>PC 1</strong><span class="state">Client — receives settings through DHCP</span></div>
       <div class="zone-note">Default gateway for LAN 1: 10.0.0.1. Reserve static addresses outside the DHCP pool.</div>
     </div>
@@ -81,7 +81,7 @@ main{max-width:1180px;margin:auto;padding:0 24px}.section{padding:34px 0;border-
       <tr><td>Router 1</td><td>Fa0/1</td><td class="ip">10.0.0.1/24</td><td class="ip">255.255.255.0</td><td>Gateway in saved configuration</td></tr>
       <tr><td>Switch 1</td><td>VLAN 1</td><td class="ip">10.0.0.2/24</td><td class="ip">255.255.255.0</td><td>Provided</td></tr>
       <tr><td>DHCP Server 1</td><td>NIC</td><td class="ip">10.0.0.3/24</td><td class="ip">255.255.255.0</td><td>Provided</td></tr>
-      <tr><td>Web Server</td><td>NIC</td><td class="ip">10.0.0.6/24</td><td class="ip">255.255.255.0</td><td>Static; gateway 10.0.0.1</td></tr>
+      <tr><td>Web Server</td><td>NIC</td><td class="ip">10.0.0.200/24</td><td class="ip">255.255.255.0</td><td>Static; gateway 10.0.0.1</td></tr>
       <tr><td>PC 1</td><td>NIC</td><td class="ip">DHCP</td><td class="ip">255.255.255.0</td><td>Lease not provided</td></tr>
       <tr><td>Router 1</td><td>Fa0/0</td><td class="ip">192.10.170.18/30</td><td class="ip">255.255.255.252</td><td>Provided</td></tr>
       <tr><td>Router 2</td><td>Fa0/0</td><td class="ip">192.10.170.17/30</td><td class="ip">255.255.255.252</td><td>Provided</td></tr>
@@ -99,11 +99,11 @@ main{max-width:1180px;margin:auto;padding:0 24px}.section{padding:34px 0;border-
   <h2 class="section-title">04 / NETWORK SERVICES</h2>
   <div class="cards">
     <div class="card"><h3>DHCP</h3><p>DHCP Server 1 supplies dynamic configuration to LAN 1 clients. Server 0 (the DHCP Server 2 role) supplies LAN 2 clients.</p><span class="badge">UDP 67/68</span><p class="tiny">Reserve statically addressed infrastructure devices and ensure each pool has the correct mask and gateway.</p></div>
-    <div class="card"><h3>DNS</h3><p>The hostname <span class="ip">www.lab.matin.local</span> must resolve to the actual Web Server IP.</p><span class="badge">UDP/TCP 53</span><p class="tiny">The Web Server provides DNS at 10.0.0.6. Both DHCP pools advertise 10.0.0.6 as the DNS server.</p></div>
+    <div class="card"><h3>DNS</h3><p>The hostname <span class="ip">www.lab.matin.local</span> must resolve to the actual Web Server IP.</p><span class="badge">UDP/TCP 53</span><p class="tiny">The Web Server provides DNS at 10.0.0.200. Both DHCP pools advertise 10.0.0.200 as the DNS server.</p></div>
     <div class="card"><h3>HTTP</h3><p>The Web Server hosts this website and serves it through HTTP.</p><span class="badge">TCP 80</span><p class="tiny">Enable Services → HTTP in Packet Tracer. Confirm the DNS A record points to this device, not automatically to DHCP Server 1.</p></div>
   </div>
   <h3>DNS record to configure</h3>
-  <div class="table-wrap"><table><tr><th>Field</th><th>Value</th></tr><tr><td>Record name</td><td class="ip">www.lab.matin.local</td></tr><tr><td>Type</td><td>A record</td></tr><tr><td>Address</td><td>10.0.0.6</td></tr></table></div>
+  <div class="table-wrap"><table><tr><th>Field</th><th>Value</th></tr><tr><td>Record name</td><td class="ip">www.lab.matin.local</td></tr><tr><td>Type</td><td>A record</td></tr><tr><td>Address</td><td>10.0.0.200</td></tr></table></div>
   <p class="desc" style="margin-top:12px">Client test URL: <a href="http://www.lab.matin.local">http://www.lab.matin.local</a></p>
 </section>
 <section class="section" id="routing">
@@ -132,7 +132,7 @@ show mac address-table
 show ip interface brief</div></div>
   </div>
   <h3>Debug checklist</h3>
-  <ol class="checklist"><li>Confirm each infrastructure interface is up and has the correct IP/mask.</li><li>Confirm each client receives a valid DHCP address, default gateway and DNS server.</li><li>Verify routes exist in both directions between 10.0.0.0/24 and 192.10.170.0/28.</li><li>Verify the DNS A record for <span class="ip">www.lab.matin.local</span> points to 10.0.0.6.</li><li>Verify HTTP is enabled on the Web Server.</li><li>Test by IP first, then by hostname.</li></ol>
+  <ol class="checklist"><li>Confirm each infrastructure interface is up and has the correct IP/mask.</li><li>Confirm each client receives a valid DHCP address, default gateway and DNS server.</li><li>Verify routes exist in both directions between 10.0.0.0/24 and 192.10.170.0/28.</li><li>Verify the DNS A record for <span class="ip">www.lab.matin.local</span> points to 10.0.0.200.</li><li>Verify HTTP is enabled on the Web Server.</li><li>Test by IP first, then by hostname.</li></ol>
 </section>
 <section class="section">
   <h2 class="section-title">07 / PROJECT OBJECTIVES</h2>
@@ -148,6 +148,6 @@ show ip interface brief</div></div>
   <div class="card"><h3>MATIN SADEGHI</h3><p>Networking and cybersecurity student documenting a practical Cisco Packet Tracer lab focused on IPv4 addressing, DHCP, DNS, HTTP, switching and routing.</p><a class="social" href="https://www.linkedin.com/in/matin-sadeghi-863487321/" target="_blank" rel="noopener noreferrer">View LinkedIn profile &gt;&gt;</a></div>
 </section>
 </main>
-<footer><strong>MATIN SADEGHI // NETWORK LAB</strong><br>CISCO PACKET TRACER / IPv4 / DHCP / DNS / HTTP / ROUTING / SWITCHING<br><br><span style="color:var(--mint)">LEARN. CONFIGURE. TEST. TROUBLESHOOT.</span><p>Documentation reflects the repaired topology: Web Server/DNS 10.0.0.6/24; client addresses are provided by DHCP.</p></footer>
+<footer><strong>MATIN SADEGHI // NETWORK LAB</strong><br>CISCO PACKET TRACER / IPv4 / DHCP / DNS / HTTP / ROUTING / SWITCHING<br><br><span style="color:var(--mint)">LEARN. CONFIGURE. TEST. TROUBLESHOOT.</span><p>Documentation reflects the repaired topology: Web Server/DNS 10.0.0.200/24; client addresses are provided by DHCP.</p></footer>
 </body>
 </html>

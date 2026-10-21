@@ -38,12 +38,12 @@ In Packet Tracer, open each DHCP server's **Services → DHCP** page. Confirm th
 
 ## 5. Verify DNS and HTTP
 
-1. Confirm the Web Server is static at `10.0.0.6/24` with gateway `10.0.0.1`.
-2. In **Services → DNS**, confirm DNS is On and the A record `www.lab.matin.local` points to `10.0.0.6`.
+1. Confirm the Web Server is static at `10.0.0.200/24` with gateway `10.0.0.1`.
+2. In **Services → DNS**, confirm DNS is On and the A record `www.lab.matin.local` points to `10.0.0.200`.
 3. In **Services → HTTP**, confirm HTTP is On and `index.html` is present.
-4. Confirm both DHCP pools advertise DNS `10.0.0.6`.
+4. Confirm both DHCP pools advertise DNS `10.0.0.200`.
 5. Confirm DHCP Server 2 starts at `192.10.170.4`, not the LAN network address `.0`.
-6. Test `ping 10.0.0.6`, then open `http://www.lab.matin.local` from a client in each LAN.
+6. Test `ping 10.0.0.200`, then open `http://www.lab.matin.local` from a client in each LAN.
 
 ## Common symptoms
 
@@ -59,5 +59,5 @@ A failed ping alone does not prove that a service is unavailable; use the result
 
 ## Issues corrected in the repaired project
 
-- The Web Server was a DHCP client, while the DNS A record and DHCP options hard-coded `10.0.0.6`. It now uses static `10.0.0.6/24`, and the DNS record and both pool DNS options use `10.0.0.6`.
+- The Web Server was a DHCP client, while the DNS A record and DHCP options hard-coded `10.0.0.6`. It now uses static `10.0.0.200/24`, and the DNS record and both pool DNS options use `10.0.0.200`.
 - DHCP Server 2's pool started at `192.10.170.0`, which is its network address. The repaired range is `192.10.170.4` to `192.10.170.13`.

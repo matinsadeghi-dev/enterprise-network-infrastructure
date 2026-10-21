@@ -2,8 +2,8 @@
 
 ## 1.2.0 — 2026-10-21
 
-- Assigned the Web Server a stable static address (`10.0.0.6/24`).
-- Updated the `www.lab.matin.local` DNS A record and both DHCP pools to use `10.0.0.6` as the DNS server.
+- Assigned the Web Server a stable static address (`10.0.0.200/24`).
+- Updated the `www.lab.matin.local` DNS A record and both DHCP pools to use `10.0.0.200` as the DNS server.
 - Corrected the LAN 2 DHCP pool to start at `192.10.170.4` and end at `192.10.170.13`.
 - Preserved the existing router interface addresses and static routes.
 - Added a DNS repair report and refreshed the website, topology diagram, and configuration documentation.

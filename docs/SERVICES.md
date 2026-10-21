@@ -26,17 +26,17 @@ Create an A record on whichever device actually provides DNS:
 | Type | A |
 | Address | Actual static IPv4 address of the Web Server |
 
-In the repaired lab, the Web Server also provides DNS at static address `10.0.0.6/24`. Its DNS service is On and the A record maps `www.lab.matin.local` to `10.0.0.6`. Both DHCP pools advertise `10.0.0.6` as the DNS server.
+In the repaired lab, the Web Server also provides DNS at static address `10.0.0.200/24`. Its DNS service is On and the A record maps `www.lab.matin.local` to `10.0.0.200`. Both DHCP pools advertise `10.0.0.200` as the DNS server.
 
 ## HTTP
 
 The separate Web Server in LAN 1 hosts the website. In Packet Tracer, open the Web Server and select **Services → HTTP**. Enable HTTP and replace the contents of `index.html` with the repository's root `index.html` if the built-in browser supports the page's features.
 
-The repaired project uses static Web Server address `10.0.0.6/24` and default gateway `10.0.0.1`. This address is outside DHCP Server 1's configured dynamic range (`10.0.0.4`–`10.0.0.23`).
+The repaired project uses static Web Server address `10.0.0.200/24` and default gateway `10.0.0.1`. This address is outside DHCP Server 1's configured dynamic range (`10.0.0.4`–`10.0.0.23`).
 
 ## Validation sequence
 
-1. Confirm the Web Server is static at `10.0.0.6/24`, has gateway `10.0.0.1`, and DNS is On.
+1. Confirm the Web Server is static at `10.0.0.200/24`, has gateway `10.0.0.1`, and DNS is On.
 2. Check DHCP leases on PC 1, Laptop 0 and PC 2.
 3. Test reachability to the local default gateway.
 4. Test reachability to the Web Server by IP.

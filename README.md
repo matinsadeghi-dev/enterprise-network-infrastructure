@@ -2,7 +2,7 @@
 
 A beginner networking project documenting a two-LAN topology built in Cisco Packet Tracer. The project combines IPv4 subnetting, DHCP, DNS, HTTP hosting, switching, router-to-router connectivity and troubleshooting in one lab.
 
-> **DNS repair in the bundled lab:** the Web Server is assigned the static address `10.0.0.6/24`, DNS record `www.lab.matin.local` points to `10.0.0.6`, and both DHCP pools advertise `10.0.0.6` as DNS. DHCP Server 2 now starts its pool at `192.10.170.4` to avoid offering the network address.
+> **DNS repair in the bundled lab:** the Web Server is assigned the static address `10.0.0.200/24`, DNS record `www.lab.matin.local` points to `10.0.0.200`, and both DHCP pools advertise `10.0.0.200` as DNS. DHCP Server 2 now starts its pool at `192.10.170.4` to avoid offering the network address.
 
 ## Project at a glance
 
@@ -23,9 +23,9 @@ The complete device inventory includes:
 ### LAN 1 — `10.0.0.0/24`
 - Router 1 — `Fa0/1`: `10.0.0.1/24`.
 - Switch 1 — VLAN 1: `10.0.0.2/24`.
-- DHCP Server 1 — `10.0.0.3/24`; DHCP pool starts at `10.0.0.4` and provides DNS `10.0.0.6`.
+- DHCP Server 1 — `10.0.0.3/24`; DHCP pool starts at `10.0.0.4` and provides DNS `10.0.0.200`.
 - PC 1 — DHCP client.
-- Web Server — `10.0.0.6/24`; hosts HTTP and DNS.
+- Web Server — `10.0.0.200/24`; hosts HTTP and DNS.
 
 ### Router transit — `192.10.170.16/30`
 - Router 1 — `Fa0/0`: `192.10.170.18/30`.
@@ -37,7 +37,7 @@ The complete device inventory includes:
 - Laptop 0 — DHCP client.
 - PC 2 — DHCP client.
 - Printer 1 — DHCP client.
-- Server 0 (the DHCP Server 2 role) — `192.10.170.3/28`; pool starts at `192.10.170.4` and provides DNS `10.0.0.6`.
+- Server 0 (the DHCP Server 2 role) — `192.10.170.3/28`; pool starts at `192.10.170.4` and provides DNS `10.0.0.200`.
 
 ## Repository structure
 
@@ -81,8 +81,8 @@ The HTML and CSS are self-contained; no build tools or external libraries are re
 1. Open `packet-tracer/matin-network-lab.pkt` in Cisco Packet Tracer.
 2. Confirm the router interface addresses, subnet masks and interface states.
 3. Confirm both DHCP servers are enabled and each pool provides the correct gateway and DNS server.
-4. Confirm the Web Server is static at `10.0.0.6/24`, with gateway `10.0.0.1`.
-5. Confirm the DNS A record for `www.lab.matin.local` points to `10.0.0.6`, and both DHCP pools hand out DNS `10.0.0.6`.
+4. Confirm the Web Server is static at `10.0.0.200/24`, with gateway `10.0.0.1`.
+5. Confirm the DNS A record for `www.lab.matin.local` points to `10.0.0.200`, and both DHCP pools hand out DNS `10.0.0.200`.
 6. Confirm HTTP and DNS are enabled on the Web Server.
 7. Verify routes between both LANs.
 8. Test by IP address first, then test `http://www.lab.matin.local` from clients on both LANs.
@@ -91,7 +91,7 @@ See [Troubleshooting](docs/TROUBLESHOOTING.md) for a more detailed checklist. Th
 
 ## Important configuration distinction
 
-The Web Server and DHCP Server 1 are separate devices. In the repaired project, the Web Server has a static IP of `10.0.0.6/24`, while DHCP Server 1 is `10.0.0.3/24`. The DNS A record and DNS options in both DHCP pools now point to `10.0.0.6`.
+The Web Server and DHCP Server 1 are separate devices. In the repaired project, the Web Server has a static IP of `10.0.0.200/24`, while DHCP Server 1 is `10.0.0.3/24`. The DNS A record and DNS options in both DHCP pools now point to `10.0.0.200`.
 
 ## Publish with GitHub Pages
 

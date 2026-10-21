@@ -9,7 +9,7 @@ This plan records the uploaded topology. The repaired `.pkt` uses a static addre
 | Router 1 | Fa0/1 | `10.0.0.1/24` | `255.255.255.0` | — | Confirmed in uploaded configuration |
 | Switch 1 | VLAN 1 | `10.0.0.2/24` | `255.255.255.0` | `10.0.0.1` | Supplied address; gateway inferred |
 | DHCP Server 1 | NIC | `10.0.0.3/24` | `255.255.255.0` | `10.0.0.1` | Supplied address; gateway inferred |
-| Web Server | NIC | `10.0.0.6/24` | `255.255.255.0` | `10.0.0.1` | Static in repaired project; DNS/HTTP host |
+| Web Server | NIC | `10.0.0.200/24` | `255.255.255.0` | `10.0.0.1` | Static in repaired project; DNS/HTTP host |
 | PC 1 | NIC | DHCP | `/24` | from DHCP | Lease not supplied |
 | Router 1 | Fa0/0 | `192.10.170.18/30` | `255.255.255.252` | — | Supplied |
 | Router 2 | Fa0/0 | `192.10.170.17/30` | `255.255.255.252` | — | Supplied |
@@ -46,4 +46,4 @@ This plan records the uploaded topology. The repaired `.pkt` uses a static addre
 
 ## DHCP range planning
 
-Do not include statically assigned infrastructure addresses in dynamic pools. Confirm the Web Server's static address first, reserve addresses for Printer 1 if required, and then configure a pool that fits the remaining usable addresses. In the repaired project, DHCP Server 1 starts at `10.0.0.4` with 20 addresses. DHCP Server 2 starts at `192.10.170.4` with 10 addresses; the network address `.0` is not offered. The DNS option in both pools is `10.0.0.6`.
+Do not include statically assigned infrastructure addresses in dynamic pools. Confirm the Web Server's static address first, reserve addresses for Printer 1 if required, and then configure a pool that fits the remaining usable addresses. In the repaired project, DHCP Server 1 starts at `10.0.0.4` with 20 addresses. DHCP Server 2 starts at `192.10.170.4` with 10 addresses; the network address `.0` is not offered. The DNS option in both pools is `10.0.0.200`.
