@@ -46,4 +46,4 @@ This plan records the uploaded topology. The repaired `.pkt` uses a static addre
 
 ## DHCP range planning
 
-Do not include statically assigned infrastructure addresses in dynamic pools. Confirm the Web Server's static address first, reserve addresses for Printer 1 if required, and then configure a pool that fits the remaining usable addresses. In the repaired project, DHCP Server 1 starts at `10.0.0.4` with 20 addresses. DHCP Server 2 starts at `192.10.170.4` with 10 addresses; the network address `.0` is not offered. The DNS option in both pools is `10.0.0.200`.
+Do not include statically assigned infrastructure addresses in dynamic pools. Confirm the Web Server's static address first, reserve addresses for Printer 1 if required, and then configure a pool that fits the remaining usable addresses. In the repaired project, DHCP Server 1 starts at `10.0.0.4` with 20 addresses. DHCP Server 2 starts at `192.10.170.4` with 10 addresses; the network address `.0` is not offered. The DNS option in both pools is `10.0.0.6`.

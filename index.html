@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Matin Sadeghi's Cisco Packet Tracer network lab documenting IPv4 addressing, DHCP, DNS, HTTP, routing and troubleshooting across two LANs.">
+<title>Matin Sadeghi | Network Lab</title>
+<style>
+:root{--bg:#080d19;--panel:#121d32;--panel2:#0e1729;--line:#283b59;--text:#e7eefb;--muted:#9eafc9;--mint:#55e6c1;--blue:#83b7ff;--gold:#e6bd66;--pink:#ed83c4}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.7 Arial,Helvetica,sans-serif}a{color:var(--mint)}a:hover{color:#a3ffe8}
+header{padding:22px max(5%,calc((100% - 1180px)/2));background:#101a2d;border-bottom:2px solid var(--mint)}.brand{font-size:19px;letter-spacing:2px;font-weight:bold;color:var(--mint)}.subtitle{margin-top:5px;font-size:11px;letter-spacing:2px;color:#889bb8}.nav{display:flex;flex-wrap:wrap;gap:14px;margin-top:15px}.nav a{font-size:12px;text-decoration:none;color:#c7d5e9}
+.hero{padding:54px max(5%,calc((100% - 1180px)/2));background:var(--panel2);border-bottom:1px solid #243550}.eyebrow{color:var(--mint);font-size:12px;letter-spacing:3px;font-weight:bold}h1{font-size:clamp(30px,5vw,45px);line-height:1.15;margin:16px 0}h1 span{color:var(--mint)}.hero p{max-width:760px;color:#b4c2d8}.button{display:inline-block;margin-top:12px;padding:11px 17px;border-radius:4px;background:var(--mint);color:#08111d;text-decoration:none;font-weight:bold}
+main{max-width:1180px;margin:auto;padding:0 24px}.section{padding:34px 0;border-bottom:1px solid #1e2b41}.section-title{margin:0 0 8px;color:var(--mint);font-size:17px;letter-spacing:2px}.desc{color:var(--muted);margin:0 0 20px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}.card h3{margin:0 0 8px;color:var(--blue);font-size:14px;letter-spacing:1px}.card p{margin:7px 0;color:#bac8dc}.metric{font-size:24px;font-weight:bold;color:var(--mint)}.tiny{font-size:12px;color:#91a4c0}.badge{display:inline-block;padding:3px 7px;margin:2px;border:1px solid #344d6d;border-radius:3px;background:#1c2b43;color:#c1d7f8;font-size:11px}.warning,.info{margin-top:14px;padding:14px;border-left:4px solid var(--gold);background:#2c2415;color:#edcf92;border-radius:3px}.info{border-left-color:var(--mint);background:#102d2b;color:#b4f4e2}
+.topology{display:grid;grid-template-columns:1fr .62fr 1fr;gap:12px;align-items:stretch}.zone{padding:14px;border-radius:8px;border:1px solid var(--line);background:#0c1424}.zone.lan1{border-color:#6277ff;background:linear-gradient(160deg,#171f43,#10172c)}.zone.transit{border-color:#30d4c0;background:linear-gradient(160deg,#0d302e,#101f2b)}.zone.lan2{border-color:#df5eae;background:linear-gradient(160deg,#3a1834,#191528)}.zone h3{margin:0 0 6px;font-size:13px;letter-spacing:1px}.zone.lan1 h3{color:#aebaff}.zone.transit h3{color:#75f4df}.zone.lan2 h3{color:#ffb4df}.subnet{margin:0 0 14px;color:#b9c6db;font-family:Consolas,monospace;font-size:12px}.device{margin:9px 0;padding:10px;border:1px solid #344965;background:#121f33;border-radius:5px}.device strong{display:block;font-size:12px;color:#e5eefc}.device span{display:block;font-size:12px;color:var(--blue);font-family:Consolas,monospace}.device .state{color:#b1bed2;font-family:Arial,Helvetica,sans-serif}.routerline{margin:12px 0;padding:11px 6px;text-align:center;border:1px dashed #55e6c1;border-radius:5px;color:#b4f4e2;font-family:Consolas,monospace;font-size:12px}.zone-note{font-size:12px;color:#9eafc9;margin-top:10px}.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}.step{padding:13px;background:var(--panel);border:1px solid var(--line);border-radius:6px}.step b{display:block;color:var(--mint);margin-bottom:5px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;background:#111b2e}th{background:#1b2a43;color:var(--mint);font-size:11px;letter-spacing:.8px;text-align:left;padding:12px}td{padding:11px 12px;border-bottom:1px solid #28364d;color:#c3d0e4;text-align:left}tr:hover td{background:#18263d}.ip{color:var(--blue);font-family:Consolas,"Courier New",monospace;white-space:nowrap}.code{white-space:pre-wrap;overflow-wrap:anywhere;background:#070b13;border:1px solid #263750;border-radius:6px;padding:16px;color:#91f2cb;font:12px/1.8 Consolas,"Courier New",monospace}.checklist{padding-left:20px;color:#c3d0e4}.checklist li{padding:4px 0}.social{display:inline-block;margin-top:8px}footer{margin-top:25px;padding:25px max(5%,calc((100% - 1180px)/2));background:#101a2d;border-top:1px solid var(--line);color:#8295b1;font-size:12px}footer strong{color:var(--mint);letter-spacing:2px}
+@media(max-width:850px){.topology{grid-template-columns:1fr}.zone.transit{order:2}.zone.lan2{order:3}.hero{padding-top:40px;padding-bottom:40px}main{padding:0 16px}.section{padding:27px 0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">MATIN.SADEGHI // NETWORK LAB</div>
+  <div class="subtitle">CISCO PACKET TRACER / NETWORK SERVICES / INFRASTRUCTURE</div>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#topology">Topology</a><a href="#addressing">IP addressing</a><a href="#services">Services</a><a href="#routing">Routing</a><a href="#troubleshooting">Troubleshooting</a>
+  </nav>
+</header>
+<section class="hero">
+  <div class="eyebrow">NETWORK ENGINEERING // PRACTICAL LAB</div>
+  <h1>Understand the network.<br><span>Trace every connection.</span></h1>
+  <p>This lab connects two IPv4 LANs through two Cisco 2811 routers. It documents the devices, subnetting, DHCP, DNS, HTTP hosting, routing and troubleshooting in a Cisco Packet Tracer environment.</p>
+  <a class="button" href="#topology">EXPLORE THE TOPOLOGY &gt;</a>
+</section>
+<main>
+<section class="section">
+  <h2 class="section-title">01 / NETWORK SUMMARY</h2>
+  <p class="desc">Three IP networks form the main design: two user LANs and one router transit link.</p>
+  <div class="cards">
+    <div class="card"><div class="metric">10.0.0.0/24</div><strong>LAN 1</strong><p>Switch 1, PC 1, Web Server, DHCP Server 1 and Router 1.</p><span class="badge">255.255.255.0</span></div>
+    <div class="card"><div class="metric">192.10.170.16/30</div><strong>Transit link</strong><p>Point-to-point network between Router 1 and Router 2.</p><span class="badge">255.255.255.252</span></div>
+    <div class="card"><div class="metric">192.10.170.0/28</div><strong>LAN 2</strong><p>Switch 2, Laptop 0, PC 2, Printer 1, Server 0 (DHCP Server 2 role) and Router 2.</p><span class="badge">255.255.255.240</span></div>
+  </div>
+  <div class="warning"><strong>Address verification:</strong> Router 1 Fa0/1 is <span class="ip">10.0.0.1/24</span> in the saved configuration. The Web Server is statically configured at 10.0.0.6/24. Client addresses are assigned through DHCP.</div>
+</section>
+<section class="section" id="topology">
+  <h2 class="section-title">02 / COMPLETE DEVICE TOPOLOGY</h2>
+  <p class="desc">The topology below reflects the saved Packet Tracer file. Device names follow the file; Server 0 provides the LAN 2 DHCP service.</p>
+  <div class="topology">
+    <div class="zone lan1">
+      <h3>LAN 1 — 10.0.0.0/24</h3><p class="subnet">Mask: 255.255.255.0</p>
+      <div class="device"><strong>Router 1 · Fa0/1</strong><span>10.0.0.1/24 · default gateway</span></div>
+      <div class="device"><strong>Switch 1 · VLAN 1</strong><span>10.0.0.2/24</span></div>
+      <div class="device"><strong>DHCP Server 1</strong><span>10.0.0.3/24</span><span class="state">Provides LAN 1 client addressing</span></div>
+      <div class="device"><strong>Web Server</strong><span>10.0.0.6/24 • static</span><span class="state">HTTP host; DNS A record: www.lab.matin.local</span></div>
+      <div class="device"><strong>PC 1</strong><span class="state">Client — receives settings through DHCP</span></div>
+      <div class="zone-note">Default gateway for LAN 1: 10.0.0.1. Reserve static addresses outside the DHCP pool.</div>
+    </div>
+    <div class="zone transit">
+      <h3>ROUTER TRANSIT</h3><p class="subnet">192.10.170.16/30</p>
+      <div class="device"><strong>Router 1 · Fa0/0</strong><span>192.10.170.18/30</span></div>
+      <div class="routerline">↔ Point-to-point link ↔<br>Mask 255.255.255.252<br>Network .16 · Broadcast .19</div>
+      <div class="device"><strong>Router 2 · Fa0/0</strong><span>192.10.170.17/30</span></div>
+      <div class="zone-note">Usable addresses: 192.10.170.17 and 192.10.170.18.</div>
+    </div>
+    <div class="zone lan2">
+      <h3>LAN 2 — 192.10.170.0/28</h3><p class="subnet">Mask: 255.255.255.240</p>
+      <div class="device"><strong>Router 2 · Fa0/1</strong><span>192.10.170.1/28</span></div>
+      <div class="device"><strong>Switch 2 · VLAN 1</strong><span>192.10.170.2/28</span></div>
+      <div class="device"><strong>Laptop 0</strong><span class="state">DHCP client</span></div>
+      <div class="device"><strong>PC 2</strong><span class="state">DHCP client</span></div>
+      <div class="device"><strong>Printer 1</strong><span class="state">DHCP client</span></div>
+      <div class="device"><strong>Server 0 / DHCP Server 2</strong><span>192.10.170.3/28</span><span class="state">Provides LAN 2 client addressing</span></div>
+      <div class="zone-note">Default gateway for LAN 2: 192.10.170.1.</div>
+    </div>
+  </div>
+</section>
+<section class="section" id="addressing">
+  <h2 class="section-title">03 / IP ADDRESSING PLAN</h2>
+  <p class="desc">Confirmed values supplied for the lab are separated from inferred or unknown values.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Device</th><th>Interface</th><th>Address / Prefix</th><th>Mask</th><th>Status / Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Router 1</td><td>Fa0/1</td><td class="ip">10.0.0.1/24</td><td class="ip">255.255.255.0</td><td>Gateway in saved configuration</td></tr>
+      <tr><td>Switch 1</td><td>VLAN 1</td><td class="ip">10.0.0.2/24</td><td class="ip">255.255.255.0</td><td>Provided</td></tr>
+      <tr><td>DHCP Server 1</td><td>NIC</td><td class="ip">10.0.0.3/24</td><td class="ip">255.255.255.0</td><td>Provided</td></tr>
+      <tr><td>Web Server</td><td>NIC</td><td class="ip">10.0.0.6/24</td><td class="ip">255.255.255.0</td><td>Static; gateway 10.0.0.1</td></tr>
+      <tr><td>PC 1</td><td>NIC</td><td class="ip">DHCP</td><td class="ip">255.255.255.0</td><td>Lease not provided</td></tr>
+      <tr><td>Router 1</td><td>Fa0/0</td><td class="ip">192.10.170.18/30</td><td class="ip">255.255.255.252</td><td>Provided</td></tr>
+      <tr><td>Router 2</td><td>Fa0/0</td><td class="ip">192.10.170.17/30</td><td class="ip">255.255.255.252</td><td>Provided</td></tr>
+      <tr><td>Router 2</td><td>Fa0/1</td><td class="ip">192.10.170.1/28</td><td class="ip">255.255.255.240</td><td>Provided</td></tr>
+      <tr><td>Switch 2</td><td>VLAN 1</td><td class="ip">192.10.170.2/28</td><td class="ip">255.255.255.240</td><td>Provided</td></tr>
+      <tr><td>Server 0 / DHCP Server 2</td><td>NIC</td><td class="ip">192.10.170.3/28</td><td class="ip">255.255.255.240</td><td>DHCP for LAN 2; gateway 192.10.170.1</td></tr>
+      <tr><td>Laptop 0</td><td>NIC</td><td class="ip">DHCP</td><td class="ip">255.255.255.240</td><td>Lease not provided</td></tr>
+      <tr><td>PC 2</td><td>NIC</td><td class="ip">DHCP</td><td class="ip">255.255.255.240</td><td>Lease not provided</td></tr>
+      <tr><td>Printer 1</td><td>NIC</td><td class="ip">DHCP</td><td class="ip">255.255.255.240</td><td>DHCP client</td></tr>
+    </tbody>
+  </table></div>
+  <div class="info"><strong>Subnet calculations</strong><br>LAN 1: network 10.0.0.0, broadcast 10.0.0.255, usable 10.0.0.1–10.0.0.254.<br>LAN 2: network 192.10.170.0, broadcast 192.10.170.15, usable 192.10.170.1–192.10.170.14.<br>Transit: network 192.10.170.16, broadcast 192.10.170.19, usable 192.10.170.17–192.10.170.18.</div>
+</section>
+<section class="section" id="services">
+  <h2 class="section-title">04 / NETWORK SERVICES</h2>
+  <div class="cards">
+    <div class="card"><h3>DHCP</h3><p>DHCP Server 1 supplies dynamic configuration to LAN 1 clients. Server 0 (the DHCP Server 2 role) supplies LAN 2 clients.</p><span class="badge">UDP 67/68</span><p class="tiny">Reserve statically addressed infrastructure devices and ensure each pool has the correct mask and gateway.</p></div>
+    <div class="card"><h3>DNS</h3><p>The hostname <span class="ip">www.lab.matin.local</span> must resolve to the actual Web Server IP.</p><span class="badge">UDP/TCP 53</span><p class="tiny">The Web Server provides DNS at 10.0.0.6. Both DHCP pools advertise 10.0.0.6 as the DNS server.</p></div>
+    <div class="card"><h3>HTTP</h3><p>The Web Server hosts this website and serves it through HTTP.</p><span class="badge">TCP 80</span><p class="tiny">Enable Services → HTTP in Packet Tracer. Confirm the DNS A record points to this device, not automatically to DHCP Server 1.</p></div>
+  </div>
+  <h3>DNS record to configure</h3>
+  <div class="table-wrap"><table><tr><th>Field</th><th>Value</th></tr><tr><td>Record name</td><td class="ip">www.lab.matin.local</td></tr><tr><td>Type</td><td>A record</td></tr><tr><td>Address</td><td>10.0.0.6</td></tr></table></div>
+  <p class="desc" style="margin-top:12px">Client test URL: <a href="http://www.lab.matin.local">http://www.lab.matin.local</a></p>
+</section>
+<section class="section" id="routing">
+  <h2 class="section-title">05 / ROUTING BETWEEN LANs</h2>
+  <p class="desc">If static routing is used, these routes let each router reach the other LAN. Do not add duplicate routes if a routing protocol already provides them.</p>
+  <div class="cards">
+    <div class="card"><h3>ROUTER 1 → LAN 2</h3><div class="code">ip route 192.10.170.0 255.255.255.240 192.10.170.17</div></div>
+    <div class="card"><h3>ROUTER 2 → LAN 1</h3><div class="code">ip route 10.0.0.0 255.255.255.0 192.10.170.18</div></div>
+  </div>
+  <p class="tiny">Interface names may vary by device model. Verify the actual interface configuration before pasting commands. If DNS/Web Server is on LAN 1, LAN 2 clients need a working route to LAN 1 and a correct DNS option from DHCP Server 2.</p>
+</section>
+<section class="section" id="troubleshooting">
+  <h2 class="section-title">06 / TROUBLESHOOTING</h2>
+  <div class="cards">
+    <div class="card"><h3>CLIENT PC</h3><div class="code">ipconfig
+ping 10.0.0.1
+ping 10.0.0.3
+ping 192.10.170.17</div><p class="tiny">Test the local gateway first, then known reachable addresses. A failed ping does not always prove HTTP is unavailable.</p></div>
+    <div class="card"><h3>ROUTERS</h3><div class="code">show ip interface brief
+show ip route
+show running-config
+show cdp neighbors</div></div>
+    <div class="card"><h3>SWITCHES</h3><div class="code">show interfaces status
+show vlan brief
+show mac address-table
+show ip interface brief</div></div>
+  </div>
+  <h3>Debug checklist</h3>
+  <ol class="checklist"><li>Confirm each infrastructure interface is up and has the correct IP/mask.</li><li>Confirm each client receives a valid DHCP address, default gateway and DNS server.</li><li>Verify routes exist in both directions between 10.0.0.0/24 and 192.10.170.0/28.</li><li>Verify the DNS A record for <span class="ip">www.lab.matin.local</span> points to 10.0.0.6.</li><li>Verify HTTP is enabled on the Web Server.</li><li>Test by IP first, then by hostname.</li></ol>
+</section>
+<section class="section">
+  <h2 class="section-title">07 / PROJECT OBJECTIVES</h2>
+  <div class="cards">
+    <div class="card"><h3>ADDRESSING</h3><p>Practice subnetting, static infrastructure IPs and dynamic client leases.</p></div>
+    <div class="card"><h3>SERVICES</h3><p>Understand how DHCP, DNS and HTTP cooperate during a website request.</p></div>
+    <div class="card"><h3>ROUTING</h3><p>Verify communication across a point-to-point transit network between two LANs.</p></div>
+    <div class="card"><h3>TROUBLESHOOTING</h3><p>Use client and Cisco IOS commands to isolate addressing, routing and name-resolution faults.</p></div>
+  </div>
+</section>
+<section class="section">
+  <h2 class="section-title">08 / ABOUT</h2>
+  <div class="card"><h3>MATIN SADEGHI</h3><p>Networking and cybersecurity student documenting a practical Cisco Packet Tracer lab focused on IPv4 addressing, DHCP, DNS, HTTP, switching and routing.</p><a class="social" href="https://www.linkedin.com/in/matin-sadeghi-863487321/" target="_blank" rel="noopener noreferrer">View LinkedIn profile &gt;&gt;</a></div>
+</section>
+</main>
+<footer><strong>MATIN SADEGHI // NETWORK LAB</strong><br>CISCO PACKET TRACER / IPv4 / DHCP / DNS / HTTP / ROUTING / SWITCHING<br><br><span style="color:var(--mint)">LEARN. CONFIGURE. TEST. TROUBLESHOOT.</span><p>Documentation reflects the repaired topology: Web Server/DNS 10.0.0.6/24; client addresses are provided by DHCP.</p></footer>
+</body>
+</html>
